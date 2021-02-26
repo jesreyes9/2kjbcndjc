@@ -28,7 +28,9 @@ Submitted by: **Jesel Reyes**
 
 ### Notes
 
-Describe any challenges encountered while building the app.
+I really struggled to understand what was sharing element transition and spent too much time trying to implement it into Flixter, so I decided at the last minute not to integrate it. However, I think I will try again on my spare time.
+
+
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
