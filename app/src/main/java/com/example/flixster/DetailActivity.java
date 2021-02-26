@@ -2,13 +2,17 @@ package com.example.flixster;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.flixster.adapters.MovieAdapter;
 import com.example.flixster.models.Movie;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -22,13 +26,14 @@ import org.parceler.Parcels;
 import okhttp3.Headers;
 
 public class DetailActivity extends YouTubeBaseActivity {
-    private final String SECRET_KEY = getString(R.string.youtube_api_key);
+    private final String YOUTUBE_KEY = "AIzaSyDKQFq5xNsePUVhrJ4fRx3Rc7OMPWvdg4Q";
     public static final String VIDEOS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     TextView tvOverview;
     TextView tvTitle;
     RatingBar ratingBar;
     YouTubePlayerView youTubePlayerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +46,12 @@ public class DetailActivity extends YouTubeBaseActivity {
 
 
 
+
         Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         ratingBar.setRating((float)movie.getRating());
+
 
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -76,7 +83,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     }
 
     private void initializeYoutube( final String youtubeKey) {
-        youTubePlayerView.initialize(SECRET_KEY, new YouTubePlayer.OnInitializedListener() {
+        youTubePlayerView.initialize(YOUTUBE_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity" , "onInitializationSuccess");

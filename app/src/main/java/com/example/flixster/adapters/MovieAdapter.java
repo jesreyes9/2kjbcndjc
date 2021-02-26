@@ -3,6 +3,7 @@ package com.example.flixster.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.flixster.DetailActivity;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
@@ -25,10 +28,13 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     Context context;
     List<Movie> movies;
+
 
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
@@ -70,10 +76,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         ImageView ivPoster;
 
 
+
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvTitle.setTextColor(Color.parseColor("#4a47a3"));
             tvOverview = itemView.findViewById(R.id.tvOverview);
+            tvOverview.setTextColor(Color.parseColor("#763857"));
             ivPoster = itemView.findViewById(R.id.ivPoster);
             container = itemView.findViewById(R.id.container);
 
@@ -91,7 +102,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 // else imageUrl = poster image
                 imageUrl = movie.getPosterPath();
             }
-            Glide.with(context).load(imageUrl).into(ivPoster);
+
+            Glide.with(context)
+                    .load(imageUrl)
+                    .transform(new FitCenter(), new RoundedCornersTransformation(50, 0))
+                    .into(ivPoster);
+
 
             //1. Register click listener on the whole row
 

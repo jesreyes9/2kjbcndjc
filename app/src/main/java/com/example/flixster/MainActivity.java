@@ -1,11 +1,19 @@
 package com.example.flixster;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -26,12 +34,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     List<Movie> movies;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
         movies = new ArrayList<>();
+
 
         //Create an adapter
         MovieAdapter movieAdapter= new MovieAdapter(this, movies);
@@ -40,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         rvMovies.setAdapter(movieAdapter);
         //Set a Layout Manager on the recycler view
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
+
+        
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
@@ -64,7 +76,16 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(int i, Headers headers, String s, Throwable throwable) {
                 Log.d(TAG, "onFailure");
             }
+
+
         });
 
+
+
+
+
+
     }
+
+
 }
