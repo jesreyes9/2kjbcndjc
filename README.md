@@ -1,7 +1,6 @@
 
 
 ## Flix Part 2
-Submitted by: **Jesel Reyes**
 
 ### User Stories
 
