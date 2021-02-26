@@ -25,7 +25,7 @@ Submitted by: **Jesel Reyes**
 <img src="ezgif.com-gif-maker (4).gif" width=250><br>
 
 ### YouTubePlayerView
-<imgsrc="ezgif.com-gif-maker (5).gif" width = 250><br>
+<img src="ezgif.com-gif-maker (5).gif" width= 250><br>
 
 ### Notes
 
